@@ -1,0 +1,58 @@
+import React from "react";
+import {
+    StyleProp,
+    TextInput as DefaultTextInput,
+    ViewStyle,
+    View,
+    TextStyle,
+} from "react-native";
+
+interface TextInputProps {
+    placeholder?: string,
+    value?: string,
+    onChangeText: (text: string) => void,
+    style?: StyleProp<ViewStyle>,
+    textStyle?: StyleProp<TextStyle>,
+    icon?: any,
+    backgroundColor?: string,
+    secureTextEntry?: boolean
+}
+
+export const TextInput = ({
+    placeholder,
+    value,
+    onChangeText,
+    style,
+    textStyle,
+    icon,
+    backgroundColor = "#222429",
+    secureTextEntry = false,
+}: TextInputProps) => {
+    return (
+        <View style={[{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: 56,
+            borderRadius: 16,
+            backgroundColor: backgroundColor,
+            padding: 16,
+            gap: 16
+        }, style]}>
+            {icon ? icon : null}
+            <DefaultTextInput
+                placeholder={placeholder}
+                value={value}
+                onChangeText={onChangeText}
+                secureTextEntry={secureTextEntry}
+                style={[{
+                    flex: 1,
+                    height: 56,
+                    color: "#fff"
+                }, textStyle]}
+                placeholderTextColor="#ffffff80"
+            />
+        </View>
+    );
+}
